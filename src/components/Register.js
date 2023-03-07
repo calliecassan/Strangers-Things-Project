@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const cohortName = '2211-FTB-ET-WEB-AM';
 const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}/users/register`
@@ -58,9 +59,16 @@ const Register =  () => {
         <button type="submit">Submit</button>
       </form>
       {apiResponse === false ? (
-      <h4>user already exists</h4> 
+        <>
+        <h4>user already exists</h4> ,
+        <button><Link to ="/">Use Existing Login</Link></button>
+        </>
+      
       ): apiResponse === true ? (
-        <h4>registration successful!</h4> 
+        <>
+          <h4>registration successful!</h4> 
+          <button><Link to ="/">Back to Home Page</Link></button>
+        </>
       ):("")
       }
     </div>

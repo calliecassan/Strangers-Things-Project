@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 const cohortName = '2211-FTB-ET-WEB-AM';
 const APIURL = `https://strangers-things.herokuapp.com/api/${cohortName}/posts`
 
-const RenderAllPosts = () => {
+const RenderAllPosts = ({postList, setPostList}) => {
 
-  const[postList, setPostList] = useState([]);
+  
 
   useEffect(() => {
     fetchAllPosts()
@@ -20,7 +20,7 @@ const RenderAllPosts = () => {
       if (result.error) {
         throw (result.error);
         }
-        return setPostList(result.data.posts)
+        setPostList(result.data.posts)
       } catch (err) {
         console.error('Uh oh, trouble fetching posts!', err);
       }
@@ -30,9 +30,9 @@ const RenderAllPosts = () => {
       return <h3>No posts to display!</h3>;
     } else {
       return postList.map((postList) => {
-        console.log(postList.title, 'for sale')
+        //console.log(postList.title, 'for sale')
         return(
-          <div>
+          <div key= {postList._id}>
             <h1 key="title" >{postList.title}</h1>
             <h3 key="price" >Price : {postList.price}</h3>
             <h3 key="location">Location : {postList.location}</h3>
